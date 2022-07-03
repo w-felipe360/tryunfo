@@ -19,11 +19,13 @@ class App extends React.Component {
   }
 
   escreve = (event) => {
-    this.setState({ [event.target.name]: event.target.type === 'checkbox' ? event.target.checked : event.target.value });
+    this.setState({ [event.target.name]: event.target.type === 'checkbox'
+      ? event.target.checked : event.target.value });
   }
 
   render() {
-    const { nome, descricao, attr1, attr2, attr3, image, check, select, botao } = this.state;
+    const { nome, descricao, attr1, attr2, attr3,
+      image, check, select, botao } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -43,8 +45,8 @@ class App extends React.Component {
 
         />
         <Card
-          cardName={ this.state.nome }
-          cardDescription={ this.state.descricao }
+          cardName={ nome }
+          cardDescription={ descricao }
           cardAttr1={ attr1 }
           cardAttr2={ attr2 }
           cardAttr3={ attr3 }
