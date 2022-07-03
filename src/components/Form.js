@@ -12,7 +12,7 @@ class Form extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      hasTrunfo,
+      // hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -20,6 +20,7 @@ class Form extends React.Component {
     return (
       <>
         <input
+          name="nome"
           type="text"
           data-testid="name-input"
           value={ cardName }
@@ -29,33 +30,38 @@ class Form extends React.Component {
           data-testid="description-input"
           value={ cardDescription }
           onChange={ onInputChange }
+          name="descricao"
         />
         <input
           type="number"
           data-testid="attr1-input"
           value={ cardAttr1 }
           onChange={ onInputChange }
+          name="attr1"
         />
         <input
           type="number"
           data-testid="attr2-input"
           value={ cardAttr2 }
           onChange={ onInputChange }
+          name="attr2"
         />
         <input
           type="number"
           data-testid="attr3-input"
           value={ cardAttr3 }
           onChange={ onInputChange }
+          name="attr3"
         />
         <input
           type="text"
           data-testid="image-input"
           value={ cardImage }
           onChange={ onInputChange }
+          name="image"
         />
         <select
-          name="selecione"
+          name="select"
           data-testid="rare-input"
           value={ cardRare }
           onChange={ onInputChange }
@@ -89,9 +95,9 @@ class Form extends React.Component {
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
