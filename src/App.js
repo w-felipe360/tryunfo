@@ -5,7 +5,7 @@ import Card from './components/Card';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
+    this.state = { // estados
       nome: '',
       descricao: '',
       attr1: 0,
@@ -14,13 +14,50 @@ class App extends React.Component {
       image: '',
       select: '',
       check: false,
-      botao: '',
+      botao: true,
     };
+  }
+
+  handleButton = () => {
+    const { nome, descricao, attr1, attr2, attr3,
+      image } = this.state;
+    const noventa = 90;
+    const maxNumber = 210;
+    if (nome.length < 1) {
+      return this.setState({ botao: true });
+    }
+    if (image.length < 1) {
+      return this.setState({ botao: true });
+    }
+    if (descricao.length < 1) {
+      return this.setState({ botao: true });
+    }
+    if (Number(attr1) > noventa) {
+      return this.setState({ botao: true });
+    }
+    if (Number(attr2) > noventa) {
+      return this.setState({ botao: true });
+    }
+    if (Number(attr3) > noventa) {
+      return this.setState({ botao: true });
+    }
+    if (Number(attr1) < 0) {
+      return this.setState({ botao: true });
+    }
+    if (Number(attr2) < 0) {
+      return this.setState({ botao: true });
+    }
+    if (Number(attr3) < 0) {
+      return this.setState({ botao: true });
+    }
+    if (Number(attr1) + Number(attr2) + Number(attr3) > maxNumber) {
+      return this.setState({ botao: true });
+    } return this.setState({ botao: false });
   }
 
   escreve = (event) => {
     this.setState({ [event.target.name]: event.target.type === 'checkbox'
-      ? event.target.checked : event.target.value });
+      ? event.target.checked : event.target.value }, () => this.handleButton());
   }
 
   render() {
