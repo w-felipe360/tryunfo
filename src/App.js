@@ -15,6 +15,8 @@ class App extends React.Component {
       select: '',
       check: false,
       botao: true,
+      salvar: [],
+      hasTrunfo: false,
     };
   }
 
@@ -61,6 +63,19 @@ class App extends React.Component {
   }
 
 limpaBotao = () => {
+  const { nome, descricao, attr1, attr2, attr3,
+    image, check, select } = this.state;
+
+  this.setState((prevState) => ({ salvar: [...prevState.salvar, {
+    nomeA: nome,
+    descricaoA: descricao,
+    attr1A: attr1,
+    attr2A: attr2,
+    attr3A: attr3,
+    imageA: image,
+    checkA: check,
+    selectA: select }] }));
+
   this.setState({ nome: '',
     descricao: '',
     image: '',
@@ -68,12 +83,14 @@ limpaBotao = () => {
     attr2: 0,
     attr3: 0,
     select:
-  'normal' });
+  'normal',
+    botao: true });
+  this.setState({ hasTrunfo: check });
 }
 
 render() {
   const { nome, descricao, attr1, attr2, attr3,
-    image, check, select, botao } = this.state;
+    image, check, select, botao, salvar, hasTrunfo } = this.state;
   return (
     <div>
       <h1>Tryunfo</h1>
@@ -86,7 +103,7 @@ render() {
         cardImage={ image }
         cardRare={ select }
         cardTrunfo={ check }
-        hasTrunfo
+        hasTrunfo={ hasTrunfo }
         isSaveButtonDisabled={ botao }
         onInputChange={ this.escreve }
         onSaveButtonClick={ this.limpaBotao }
@@ -102,6 +119,19 @@ render() {
         cardRare={ select }
         cardTrunfo={ check }
       />
+      {
+        salvar.map((carta) => (<Card
+          key={ carta.name }
+          cardName={ carta.nomeA }
+          cardDescription={ carta.descricaoA }
+          cardAttr1={ carta.attr1A }
+          cardAttr2={ carta.attr2A }
+          cardAttr3={ carta.attr3A }
+          cardImage={ carta.imageA }
+          cardRare={ carta.selectA }
+          cardTrunfo={ carta.check }
+        />))
+      }
     </div>
   );
 }
