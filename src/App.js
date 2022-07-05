@@ -60,40 +60,51 @@ class App extends React.Component {
       ? event.target.checked : event.target.value }, () => this.handleButton());
   }
 
-  render() {
-    const { nome, descricao, attr1, attr2, attr3,
-      image, check, select, botao } = this.state;
-    return (
-      <div>
-        <h1>Tryunfo</h1>
-        <Form
-          cardName={ nome }
-          cardDescription={ descricao }
-          cardAttr1={ attr1 }
-          cardAttr2={ attr2 }
-          cardAttr3={ attr3 }
-          cardImage={ image }
-          cardRare={ select }
-          cardTrunfo={ check }
-          hasTrunfo
-          isSaveButtonDisabled={ botao }
-          onInputChange={ this.escreve }
-          onSaveButtonClick={ botao }
+limpaBotao = () => {
+  this.setState({ nome: '',
+    descricao: '',
+    image: '',
+    attr1: 0,
+    attr2: 0,
+    attr3: 0,
+    select:
+  'normal' });
+}
 
-        />
-        <Card
-          cardName={ nome }
-          cardDescription={ descricao }
-          cardAttr1={ attr1 }
-          cardAttr2={ attr2 }
-          cardAttr3={ attr3 }
-          cardImage={ image }
-          cardRare={ select }
-          cardTrunfo={ check }
-        />
-      </div>
-    );
-  }
+render() {
+  const { nome, descricao, attr1, attr2, attr3,
+    image, check, select, botao } = this.state;
+  return (
+    <div>
+      <h1>Tryunfo</h1>
+      <Form
+        cardName={ nome }
+        cardDescription={ descricao }
+        cardAttr1={ attr1 }
+        cardAttr2={ attr2 }
+        cardAttr3={ attr3 }
+        cardImage={ image }
+        cardRare={ select }
+        cardTrunfo={ check }
+        hasTrunfo
+        isSaveButtonDisabled={ botao }
+        onInputChange={ this.escreve }
+        onSaveButtonClick={ this.limpaBotao }
+
+      />
+      <Card
+        cardName={ nome }
+        cardDescription={ descricao }
+        cardAttr1={ attr1 }
+        cardAttr2={ attr2 }
+        cardAttr3={ attr3 }
+        cardImage={ image }
+        cardRare={ select }
+        cardTrunfo={ check }
+      />
+    </div>
+  );
+}
 }
 
 export default App;
